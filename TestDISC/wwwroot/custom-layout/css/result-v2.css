@@ -1,0 +1,95 @@
+﻿.nature__container {
+    text-align: center;
+    margin: 10px 0px 30px 0px;
+    position: relative;
+    border: 1px solid rgba(20, 22, 25, 0.2);
+    border-radius: 5px;
+    box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+}
+
+.graph-container {
+    z-index: 10;
+}
+
+.nature__box {
+    padding: 10px 0px;
+}
+
+.nature__box--title {
+    transition: all .2s;
+    padding: 0px;
+    border: none;
+    font-size: 14px;
+}
+
+.nature__box--D .nature__title-text {
+    background-color: #d92550;
+    color: white;
+}
+
+.nature__box--I .nature__title-text {
+    background-color: #f7b924;
+    color: white;
+}
+
+.nature__box--S .nature__title-text {
+    background-color: #3ac47d;
+    color: white;
+}
+
+.nature__box--C .nature__title-text {
+    background-color: #16aaff;
+    color: white;
+}
+
+.nature__col {
+    transition: all .2s;
+    padding: 0px;
+    border: none;
+    height: 100%;
+    font-size: 14px;
+    position: relative;
+}
+
+.nature__title {
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+.nature__title-text {
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nature__line {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    height: calc(100% - 45px);
+    background-color: transparent;
+    z-index: 1;
+}
+
+.nature__line--D {
+    border: 0.5px dashed #d92550;
+}
+
+.nature__line--I {
+    border: 0.5px dashed #f7b924;
+}
+
+.nature__line--S {
+    border: 0.5px dashed #3ac47d;
+}
+
+.nature__line--C {
+    border: 0.5px dashed #16aaff;
+}

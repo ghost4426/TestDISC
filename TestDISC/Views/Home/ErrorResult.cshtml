@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Thông báo";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 container-logo">
+        <img src="~/images/logo.jpeg" class="logo" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 error-result__title">
+        <label>Không có kết quả tương ứng. Bạn có thể làm trắc nghiệm ngay bây giờ.</label>
+    </div>
+</div>
+
+<div class="row" style="text-align: center;">
+    <div class="footer-container">
+        <button id="btn-again" class="btn btn-again btn-shadow">Bắt đầu</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btn-again").click(function (e) {
+                e.preventDefault();
+                window.location.href = '/';
+            });
+
+            DetectBanner();
+
+            $(window).resize(function () {
+                DetectBanner();
+            });
+        });
+
+        function DetectBanner() {
+            var width = $(document).width();
+            if (width < 500) {
+                $('.my-banner').attr("src", "/images/banner.png");
+            } else {
+                $('.my-banner').attr("src", "/images/banner-big.png");
+            }
+        }
+    </script>
+}

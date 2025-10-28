@@ -1,0 +1,285 @@
+﻿@model TestDISC.Models.InfoTest.InfoTestModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Trắc nghiệm DISC";
+
+    var questionLength = Model.QuestionGroup.Questions.Count();
+}
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "main-form" }))
+{
+    @Html.HiddenFor(model => model.UserCreate.partnerid)
+    @Html.HiddenFor(model => model.QuestionGroup.id)
+    @Html.HiddenFor(model => model.QuestionGroup.title)
+    @Html.HiddenFor(model => model.QuestionGroup.description)
+    @Html.HiddenFor(model => model.QuestionGroup.tutorial)
+    @Html.HiddenFor(model => model.QuestionGroup.suggest)
+    @Html.HiddenFor(model => model.QuestionGroup.ActiveQuestion)
+    <input type="hidden" id="lengthMax" name="lengthMax" value="@questionLength" />
+
+    @*<div class="row" style="display: none;" name="test-group">
+        <div class="col-lg-12 col-md-12 col-sm-12 container-logo">
+            <img src="~/images/logo-disc-new.png" class="logo" />
+        </div>
+    </div>*@
+
+    <div class="row" name="info-group">
+        <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+            <img src="~/images/banner-big.png" class="my-banner" />
+        </div>
+    </div>
+
+    <div class="row" style="display: none;" name="test-group">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-12 col-sm-12">
+
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12 container-my-banner">
+                    <img src="~/images/banner-big.png" class="my-banner" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" name="info-group">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-container">
+                        <div class="form-container__header">
+                            <label class="form-container__header--title">BÀI TRẮC NGHIỆM DISC</label><br />
+                            <label class="form-container__header--sub-title">Điền đầy đủ thông tin bên dưới để bắt đầu thực hiện bài trắc nghiệm.</label>
+                        </div>
+                        <div class="form-container__body">
+                            @Html.ValidationSummary(true, null, new { @style = "color: red; margin: 5px;" })
+                            <div class="form-container__container-input">
+                                <label>Danh xưng <span style="color: red;">*</span></label>
+                                <div class="row mt-2 mb-2">
+                                    <div class="col-3">
+                                        @Html.RadioButtonFor(model => model.UserCreate.titleid, 10, new 
+                                           { 
+                                                @type = "radio", 
+                                                @class = "form-container__radio--field",
+                                                @Id = "UserCreate_titleid_10"
+                                           }) <label for="UserCreate_titleid_10">Anh</label>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.RadioButtonFor(model => model.UserCreate.titleid, 20, new
+                                           {
+                                               @type = "radio",
+                                               @class = "form-container__radio--field",
+                                               @Id = "UserCreate_titleid_20"
+                                           }) <label for="UserCreate_titleid_20">Chị</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Họ tên <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.UserCreate.fullname, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Email <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.UserCreate.email, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Điện thoại <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.UserCreate.phone, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Tên công ty <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.UserCreate.namecompany, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-container__footer">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="introduce-container">
+                        <div class="introduce-container__body">
+                            <div class="introduce-container__title">
+                                <label>BẠN LÀ AI NƠI CÔNG SỞ?</label>
+                            </div>
+                            <div class="introduce-container__description">@Html.Raw(Model.QuestionGroup.description)</div>
+                        </div>
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.QuestionGroup.suggest))
+                    {
+                        <div class="suggest-container">
+                            <div class="suggest-container__body">
+                                <div class="suggest-container__title">
+                                    <label>TEST DISC CỦA TOPSKILLS:</label>
+                                </div>
+                                <div class="suggest-container__description">@Html.Raw(Model.QuestionGroup.suggest)</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="text-align: center;" name="info-group">
+        <div class="footer-container">
+            <button id="btn-start" class="btn btn-start btn-shadow">Bắt đầu</button>
+        </div>
+    </div>
+
+    <div class="row" name="test-group" style="display: none;">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-12 col-sm-12">
+
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="tutorial-container">
+                        <div class="tutorial-container__body" id="body-tutorial">
+                            <div class="tutorial-container__title">
+                                <label>HƯỚNG DẪN</label>
+                            </div>
+                            <div class="tutorial-container__content">@Html.Raw(Model.QuestionGroup.tutorial)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" name="test-group" style="display: none;">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-lg-2 col-md-12 col-sm-12">
+
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12">
+                    <div class="test-conainer__body">
+                        <div class="row">
+                            <div class="test-conainer__title">
+                                <label>CÂU HỎI</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            @if (Model != null && Model.QuestionGroup != null)
+                            {
+                                var indexQuestion = 0;
+                                string displayNone;
+
+                                foreach (var question in Model.QuestionGroup.Questions)
+                                {
+                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].id)
+                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].content)
+
+                                    if (indexQuestion == Model.QuestionGroup.ActiveQuestion)
+                                    {
+                                        displayNone = "";
+                                    }
+                                    else
+                                    {
+                                        displayNone = "display: none;";
+                                    }
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin: 10px 0px; @displayNone"
+                                         id="@("question_" + question.id)" name="question_block">
+                                        <div class="question-container">
+                                            @if (question.QuestionDetails != null && question.QuestionDetails.Count > 0)
+                                            {
+                                                var indexQuestionDetail = 0;
+
+                                                <div class="row question-container__title">
+                                                    <label class="col-lg-8 col-md-8 col-sm-6 col-6">@question.content</label>
+                                                    <div class="col-lg-2 col-md-2 col-sm-3 col-3" style="font-size: 16px;">MOST</div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-3 col-3" style="font-size: 16px;">LEAST</div>
+                                                </div>
+
+                                                foreach (var detail in question.QuestionDetails)
+                                                {
+                                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].id)
+                                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].content)
+                                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].mostpoint)
+                                                    @Html.HiddenFor(model => model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].leastpoint)
+
+                                                    <div class="row question-container__row">
+                                                        <label class="col-lg-8 col-md-8 col-sm-6 col-6 question-container__row--content">@detail.content</label>
+                                                        <div class="col-lg-2 col-md-2 col-sm-3 col-3 question-container__row--choice">
+                                                            @Html.RadioButtonFor(model => model.QuestionGroup.Questions[indexQuestion].mostchoosenid,
+                                                                Model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].id,
+                                                                new
+                                                                {
+                                                                    @Id = "QuestionGroup_Questions_" + indexQuestion + "__mostchoosenid_" + detail.id,
+                                                                })
+                                                            <label for="@("QuestionGroup_Questions_" + indexQuestion + "__mostchoosenid_" + detail.id)"><span style="margin: 0px;"></span>@*@detail.mostpoint*@</label>
+                                                        </div>
+                                                        <div class="col-lg-2 col-md-2 col-sm-3 col-3 question-container__row--choice">
+                                                            @Html.RadioButtonFor(model => model.QuestionGroup.Questions[indexQuestion].leastchoosenid,
+                                                                Model.QuestionGroup.Questions[indexQuestion].QuestionDetails[indexQuestionDetail].id,
+                                                                new
+                                                                {
+                                                                    @Id = "QuestionGroup_Questions_" + indexQuestion + "__leastchoosenid_" + detail.id,
+                                                                })
+                                                            <label for="@("QuestionGroup_Questions_" + indexQuestion + "__leastchoosenid_" + detail.id)"><span style="margin: 0px;"></span>@*@detail.leastpoint*@</label>
+                                                        </div>
+                                                    </div>
+
+                                                    indexQuestionDetail++;
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+
+                                    indexQuestion++;
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="test-conainer__footer">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="test-conainer__footer--btn-return-container">
+                                        <button type="button" id="btn-return" class="btn btn-return btn-shadow"
+                                                style="@(Model.QuestionGroup.ActiveQuestion == 0 ? "display: none" : "")">
+                                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Câu trước
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="test-conainer__footer--btn-next-container">
+                                        <button type="button" id="btn-next" class="btn btn-next btn-shadow"
+                                                style="@(Model.QuestionGroup.ActiveQuestion != (questionLength - 1) ? "" : "display: none")">
+                                            Câu sau <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="text-align: center; display: none;" name="test-group">
+        <div class="footer-container">
+            <button type="button" id="btn-submit" class="btn btn-submit btn-shadow" style="@(Model.QuestionGroup.ActiveQuestion == (questionLength - 1) ? "" : "display: none")">Kết quả</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script src="~/custom-layout/js/test.js"></script>
+} 

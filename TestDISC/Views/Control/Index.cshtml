@@ -1,0 +1,126 @@
+﻿@using TestDISC.Models.Report
+@using TestDISC.Models.UtilsProject
+@using TestDISC.Database.TestDISCModels
+@model ReportFilter;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Quản trị";
+
+    var partnerSelection = (List<SelectListItem>)(ViewBag.PartnerSelection ?? new List<SelectListItem>());
+    partnerSelection.Insert(0, new SelectListItem
+    {
+        Value = "",
+        Text = "Tất cả",
+    });
+
+    var loginuser = Context.Session.GetObjectFromJson<Loginuser>(Utils.NameSession);
+}
+
+<div class="row d-flex flex-column align-items-end">
+    <a href="@Url.Action("Logout", "Control", new { Area = "" })" style="width: fit-content;">Đăng xuất</a>
+</div>
+
+<div class="row" name="info-group">
+    <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+        <img src="~/images/banner-big.png" class="my-banner" />
+    </div>
+</div>
+
+@using (Html.BeginForm("", "Control", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "main-form" }))
+{
+    <div class="row" name="info-group">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-container">
+                        <div class="form-container__body">
+                            @Html.ValidationSummary(true, null, new { @class = "error-text" }, "div")
+
+                            <div class="form-container__container-input">
+                                <label>Từ ngày</label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.fromDate, new { @type = "date", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Email</label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.email, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-container">
+                        <div class="form-container__body">
+                            @Html.ValidationSummary(true, null, new { @class = "error-text" }, "div")
+
+                            <div class="form-container__container-input">
+                                <label>Đến ngày</label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.toDate, new { @type = "date", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Phone</label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.phone, new { @type = "text", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-container">
+                        <div class="form-container__body">
+                            @Html.ValidationSummary(true, null, new { @class = "error-text" }, "div")
+
+                            <div class="form-container__container-input">
+                                <label>Id kết quả</label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.useranswerid, new { @type = "number", @class = "form-container__input--field" })
+                                </div>
+                            </div>
+
+                            @if (Utils.isTopSkills(loginuser.Partnerid ?? 0))
+                            {
+                                <div class="form-container__container-input">
+                                    <label>Nguồn</label>
+                                    <div class="form-container__input">
+                                        @Html.DropDownListFor(model => model.partnerid, partnerSelection, new { @class = "form-container__input--field", @style = "min-height: 36px;" })
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" style="text-align: center;">
+        <div class="footer-container">
+            <button type="submit" class="btn btn-again btn-shadow">Tải kết quả</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function DetectBanner() {
+            var width = $(document).width();
+            if (width < 500) {
+                $('.my-banner').attr("src", "/images/banner.png");
+            } else {
+                $('.my-banner').attr("src", "/images/banner-big.png");
+            }
+        }
+    </script>
+}

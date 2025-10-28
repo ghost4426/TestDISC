@@ -1,0 +1,53 @@
+﻿@using TestDISC.Models.ResultDISC
+@using TestDISC.Models.User
+@using TestDISC.Models.UtilsProject
+@using TestDISC.ViewComponents.Home
+@model IList<PointAnswerModel>
+
+@{
+    int[] values = new int[] { 1, 2, 3, 4, 5 };
+    string[] titles = new string[] { "D", "I", "S", "C", "--" };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/custom-layout/css/result-v2.css" />
+
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        .container {
+            padding-left: 0px;
+            padding-right: 0px;
+            width: 500px;
+        }
+
+        .nature__container {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+}
+
+@await Component.InvokeAsync(typeof(MostGraphV2ViewComponent))
+
+@section Scripts {
+    <script src="~/custom-layout/js/result.js"></script>
+
+    <script>
+        function LoadAll() {
+            document.getElementById("full-most").innerHTML = '';
+
+            @for(int index = 1; index < (values.Count() - 1); index++)
+            {
+                @: DrawLine('@Utils.FindPointNumberWithType(Model, values[index - 1], "M")',
+                @:    '@Utils.FindPointNumberWithType(Model, values[index], "M")', 'most', `#16aaff`, true, @index);
+            }
+
+            HideLoading();
+        }
+
+        window.onresize = LoadAll;
+    </script>
+}

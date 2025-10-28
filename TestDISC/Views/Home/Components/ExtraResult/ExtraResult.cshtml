@@ -1,0 +1,46 @@
+﻿@using TestDISC.Models.ResultDISC
+@using TestDISC.Models.User
+@using TestDISC.Models.UtilsProject
+@model (ResultDISCModel, UserCreate)
+
+@{
+    var resultDISC = Model.Item1;
+    var userCreate = Model.Item2;
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="final-text">
+            <label>Để nghiên cứu chuyên sâu hơn về bản thân, có được những phân tích rõ nét và gợi ý kế hoạch tận dụng/ cải thiện năng lực cá nhân. Bạn hãy tham gia ngay <strong style="color: #16aaff">BÀI TEST DISC QUỐC TẾ</strong> của TOPSKILLS!</label>
+            <label class="mt-4"><strong>Xem chi tiết bài viết và 7 video về BÀI TEST DISC QUỐC TẾ</strong></label>
+            <ul class="list-info">
+                <li>Tổng quan hệ thống Bài test DISC QUỐC TẾ</li>
+                <li>Hướng dẫn làm Bài test DISC QUỐC TẾ</li>
+                <li>Kết quả 18 trang Bài test DISC QUỐC TẾ như thế nào?</li>
+                <li>Phần mở rộng của Bài test DISC QUỐC TẾ: Phân tích sức mạnh của đội ngũ</li>
+                <li>Phần mở rộng của Bài test DISC QUỐC TẾ: Phân tích năng lực bán hàng chuyên sâu</li>
+                <li>Phần mở rộng của Bài test DISC QUỐC TẾ: Đánh giá mức độ phù hợp của bạn với 1 công việc/vị trí</li>
+                <li>Phần mở rộng của Bài test DISC QUỐC TẾ: Đánh giá mức độ phù hợp làm cha mẹ</li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-12 text-center">
+                <a class="btn btn-view btn-shadow mb-5" href="https://topskills.com.vn/test-disc-quoc-te/" target="_blank">&nbsp;Xem 7 video về DISC quốc tế&nbsp;</a>
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <a class="btn btn-view btn-shadow mb-5" href="https://www.youtube.com/watch?v=heVoydKWcKs" target="_blank">Xem livestream phân tích DISC</a>
+            </div>
+        </div>
+        <div class="final-text">Nếu có bất kỳ thắc mắc nào hoặc cần hướng dẫn đọc Bảng kết quả phân tích và đánh giá năng lực hành vi DISC thì đừng ngần ngại phản hồi ngay với chúng tôi! TOPSKILLS luôn sẵn sàng với mọi vấn đề của @Utils.ConvertTitleUserVN(userCreate.titleid).</div>
+        <hr />
+        <div class="final-text final-text__last pre-line">
+            <strong>CÔNG TY CỔ PHẦN ĐÀO TẠO KỸ NĂNG LÃNH ĐẠO TOPSKILLS</strong>
+            Tòa nhà Aloha, Lầu 8, 55 Trương Quốc Dung, P.10, Q. Phú Nhuận, TP.HCM
+            Hotline: <a href="tel:0984093809">0984.09.38.09</a> | <a href="tel:0359030506">035.903.0506</a> (Ms. Tu Ngo)
+            Email: <a class="link" herf="mailto:info@topskills.com.vn">info@topskills.com.vn</a>
+            Website: <a class="link" href="https://www.topskills.com.vn" target="_blank">www.topskills.com.vn</a>
+            Facebook: <a class="link" href="https://www.facebook.com/TopskillsVN" target="_blank">https://www.facebook.com/TopskillsVN</a>
+            Youtube: <a class="link" href="https://www.youtube.com/channel/UCgFhH9Q6x4Z8Hj9t9UBoxWw" target="_blank">https://www.youtube.com/channel/UCgFhH9Q6x4Z8Hj9t9UBoxWw</a>
+        </div>
+    </div>
+</div>

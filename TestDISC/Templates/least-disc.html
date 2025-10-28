@@ -1,0 +1,513 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            line-height: 1.5;
+            font-size: 14px;
+            width: fit-content;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .row>* {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .col-3 {
+            flex: 0 0 auto;
+            width: 90px;
+            height: 100%;
+        }
+
+        /* Statistic */
+        /* .statistic-container {} */
+
+        .statistic-container__box {
+            margin: 30px 0px 0px 0px;
+            background-color: #e0f3ff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border-top-left-radius: .35rem;
+            text-align: center;
+        }
+
+        .statistic-container__title {
+            font-weight: bold;
+            border-top: 1px solid rgba(20, 22, 25, 0.2);
+            border-bottom: 1px solid rgba(20, 22, 25, 0.2);
+        }
+
+        .statistic-container__col {
+            box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%), 0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+            transition: all .2s;
+            padding: 10px;
+            border: 1px solid #16aaff;
+            border-radius: 5px;
+            height: 100%;
+            font-size: 14px;
+        }
+
+        .statistic-container__col--D {
+            border: 1px solid #d92550;
+        }
+
+        .statistic-container__col--I {
+            border: 1px solid #f7b924;
+        }
+
+        .statistic-container__col--S {
+            border: 1px solid #3ac47d;
+        }
+
+        .statistic-container__col--C {
+            border: 1px solid #16aaff;
+        }
+
+        /* Col statistic */
+        .col-characters__explain {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 30px
+        }
+
+        .col-characters__box {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .col-characters__container {
+            text-align: center;
+            margin: 10px 0px 30px 0px;
+            position: relative;
+        }
+
+        .col-characters__seperate {
+            width: 90%;
+            margin: auto;
+            height: 1px;
+            background-color: rgba(20, 22, 25, 0.2);
+        }
+
+        .col-characters__middle {
+            border-bottom: 1px dashed rgba(20, 22, 25, 0.2);
+        }
+
+        .col-characters__title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        /* Graph */
+        .graph-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0px;
+        }
+
+        #graph-page {
+            page-break-before: always;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row col-characters__container" style="margin-bottom: 30px;">
+        <svg id="full-most" class="graph-container"></svg>
+        <div class="col-3 col-characters__box">
+            <div class="statistic-container__col statistic-container__col--D">
+                <div class="row">
+                    <label class="col-characters__title">D</label>
+                    <div class="col-characters__seperate"></div>
+                </div>
+                <div class="row">
+                    <div id="LD0">0</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD1">1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD2">2</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD3">3</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD4">4</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD5">5</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="col-characters__middle"></div>
+                <div class="row">
+                    <div id="LD6">6</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LD7">7</div>
+                </div>
+                <div class="row">
+                    <div id="LD8">8</div>
+                </div>
+                <div class="row">
+                    <div id="LD9">9</div>
+                </div>
+                <div class="row">
+                    <div id="LD10">10</div>
+                </div>
+                <div class="row">
+                    <div id="LD11">11</div>
+                </div>
+                <div class="row">
+                    <div id="LD3">3</div>
+                </div>
+                <div class="row">
+                    <div id="LD12">12</div>
+                </div>
+                <div class="row">
+                    <div id="LD13">13</div>
+                </div>
+                <div class="row">
+                    <div id="LD14">14</div>
+                </div>
+                <div class="row">
+                    <div id="LD15">15</div>
+                </div>
+                <div class="row">
+                    <div id="LD16">16</div>
+                </div>
+                <div class="row">
+                    <div id="LD21">21</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-characters__box">
+            <div class="statistic-container__col statistic-container__col--I">
+                <div class="row">
+                    <label class="col-characters__title">I</label>
+                    <div class="col-characters__seperate"></div>
+                </div>
+                <div class="row">
+                    <div id="LI0">0</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI1">1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI2">2</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI3">3</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI4">4</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="col-characters__middle"></div>
+                <div class="row">
+                    <div id="LI5">5</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI6">6</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI7">7</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI8">8</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI10">10</div>
+                </div>
+                <div class="row">
+                    <div id="LI11">11</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LI15">15</div>
+                </div>
+                <div class="row">
+                    <div id="LI19">19</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-characters__box">
+            <div class="statistic-container__col statistic-container__col--S">
+                <div class="row">
+                    <label class="col-characters__title">S</label>
+                    <div class="col-characters__seperate"></div>
+                </div>
+                <div class="row">
+                    <div id="LS0">0</div>
+                </div>
+                <div class="row">
+                    <div id="LS1">1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS2">2</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS3">3</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS4">4</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS5">5</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS6">6</div>
+                </div>
+                <div class="col-characters__middle"></div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS7">7</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS8">8</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS9">9</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS10">10</div>
+                </div>
+                <div class="row">
+                    <div id="LS11">11</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LS12">12</div>
+                </div>
+                <div class="row">
+                    <div id="LS13">13</div>
+                </div>
+                <div class="row">
+                    <div id="LS19">19</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-characters__box">
+            <div class="statistic-container__col statistic-container__col--C">
+                <div class="row">
+                    <label class="col-characters__title">C</label>
+                    <div class="col-characters__seperate"></div>
+                </div>
+                <div class="row">
+                    <div id="LC0">0</div>
+                </div>
+                <div class="row">
+                    <div id="LC1">1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC2">2</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC3">3</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC4">4</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC5">5</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC6">6</div>
+                </div>
+                <div class="col-characters__middle"></div>
+                <div class="row">
+                    <div id="LC7">7</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC8">8</div>
+                </div>
+                <div class="row">
+                    <div id="LC9">9</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC10">10</div>
+                </div>
+                <div class="row">
+                    <div id="LC11">11</div>
+                </div>
+                <div class="row">
+                    <div style="visibility: hidden;">-1</div>
+                </div>
+                <div class="row">
+                    <div id="LC12">12</div>
+                </div>
+                <div class="row">
+                    <div id="LC13">13</div>
+                </div>
+                <div class="row">
+                    <div id="LC16">16</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function LoadAll() {
+            document.getElementById("full-most").innerHTML = '';
+            document.getElementById("full-least").innerHTML = '';
+
+            setTimeout(function () {
+                     DrawLine('MD5',
+                        'MI5', 'most');
+                     DrawLine('LD5',
+                        'LI4', 'least');
+                     DrawLine('MI5',
+                        'MS7', 'most');
+                     DrawLine('LI4',
+                        'LS6', 'least');
+                     DrawLine('MS7',
+                        'MC1', 'most');
+                     DrawLine('LS6',
+                        'LC5', 'least');
+            }, 200);
+
+            HideLoading();
+        }
+    </script>
+</body>
+
+</html>

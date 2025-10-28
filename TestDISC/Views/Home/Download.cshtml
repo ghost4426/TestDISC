@@ -1,0 +1,48 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Tải kết quả";
+}
+
+<div class="row" name="info-group">
+    <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+        <img src="~/images/banner-big.png" class="my-banner" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 error-result__title">
+        <label>Click vào để tải kết quả kiểm tra của người dùng.</label>
+    </div>
+</div>
+
+<div class="row" style="text-align: center;">
+    <div class="footer-container">
+        <button id="btn-download-report" class="btn btn-again btn-shadow">Tải kết quả</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#btn-download-report").click(function (e) {
+                e.preventDefault();
+                window.open('/Home/ExportReport', '_blank');
+            });
+
+            DetectBanner();
+
+            $(window).resize(function () {
+                DetectBanner();
+            });
+        });
+
+        function DetectBanner() {
+            var width = $(document).width();
+            if (width < 500) {
+                $('.my-banner').attr("src", "/images/banner.png");
+            } else {
+                $('.my-banner').attr("src", "/images/banner-big.png");
+            }
+        }
+    </script>
+}

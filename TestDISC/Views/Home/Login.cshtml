@@ -1,0 +1,69 @@
+﻿@using TestDISC.Models.Auth
+@model LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="row" name="info-group">
+    <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+        <img src="~/images/banner-big.png" class="my-banner" />
+    </div>
+</div>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @Id = "main-form" }))
+{
+    <div class="row" name="info-group">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="form-container">
+                        <div class="form-container__body">
+                            @Html.ValidationSummary(true, null, new { @class = "error-text" }, "div")
+
+                            <div class="form-container__container-input">
+                                <label>Email <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.Email, new { @type = "text", @class = "form-container__input--field" })
+                                    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "text-danger mb-4" }, "div")
+                                </div>
+                            </div>
+
+                            <div class="form-container__container-input">
+                                <label>Mật khẩu <span style="color: red;">*</span></label>
+                                <div class="form-container__input">
+                                    @Html.TextBoxFor(model => model.Password, new { @type = "password", @class = "form-container__input--field" })
+                                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "text-danger mb-4" }, "div")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+
+    <div class="row" style="text-align: center;">
+        <div class="footer-container">
+            <button type="submit" class="btn btn-again btn-shadow">Đăng nhập</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        function DetectBanner() {
+            var width = $(document).width();
+            if (width < 500) {
+                $('.my-banner').attr("src", "/images/banner.png");
+            } else {
+                $('.my-banner').attr("src", "/images/banner-big.png");
+            }
+        }
+    </script>
+}

@@ -1,0 +1,181 @@
+﻿@using TestDISC.Models.ResultDISC
+@using TestDISC.Models.User
+@using TestDISC.Models.UtilsProject
+@using TestDISC.ViewComponents.Home
+@model (ResultDISCModel, UserCreate)
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Kết quả";
+
+    int[] values = new int[] { 1, 2, 3, 4, 5 };
+    string[] titles = new string[] { "D", "I", "S", "C", "--" };
+
+    var resultDISC = Model.Item1;
+    var userCreate = Model.Item2;
+
+    var mostGraph = TestDISC.Models.UtilsProject.Utils.BuildTableGraphMost();
+    var leastGraph = TestDISC.Models.UtilsProject.Utils.BuildTableGraphLeast();
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/custom-layout/css/result-v2.css" />
+}
+
+@Html.HiddenFor(model => model.Item1.useranswerid)
+<input type="hidden" id="useranswerid" name="useranswerid" value="@Model.Item1.useranswerid" />
+<input type="hidden" id="page" name="page" value="result" />
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="row">
+        <div class="col-lg-2 col-md-12 col-sm-12 col-12">
+
+        </div>
+        <div class="col-lg-8 col-md-12 col-sm-12 col-12" id="result-form">
+            @*<div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 container-logo">
+                <img src="~/images/logo-disc-new.png" class="logo" />
+            </div>
+        </div>*@
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+                    <img src="~/images/banner-big.png" class="my-banner" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="row">
+                                <div class="result-container__container-title">
+                                    <label class="result-container__title">Kết quả:</label><label class="result-container__code-text">@resultDISC.codetext</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-12 col-sm-12 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Mô tả:</label>
+                                            <label>- @resultDISC.description</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Nhóm công việc:</label>
+                                            <label>- @resultDISC.interpret</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 col-sm-12 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Công việc:</label>
+                                            <label>- @resultDISC.quanlyti</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 col-sm-12 col-12">
+
+                        </div>
+                        <div class="col-lg-8 col-md-12 col-sm-12 col-12 statistic-container">
+                            <div class="statistic-container__box">
+                                <div class="row">
+                                    <div class="col-2" style="font-weight: bold;">MOST</div>
+                                    @foreach (var value in values)
+                                    {
+                                        <div class="col-2">@Utils.FindPointNumber(resultDISC.pointMosts, value)</div>
+                                    }
+                                </div>
+                                <div class="row statistic-container__title">
+                                    <div class="col-2"></div>
+                                    @foreach (var title in titles)
+                                    {
+                                        <div class="col-2">@title</div>
+                                    }
+                                </div>
+                                <div class="row">
+                                    <div class="col-2" style="font-weight: bold;">LEAST</div>
+                                    @foreach (var value in values)
+                                    {
+                                        <div class="col-2">@Utils.FindPointNumber(resultDISC.pointLeasts, value)</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="graph-page">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-characters__explain">
+                                            Đồ thị xu hướng dịch chuyển (Most)
+                                        </div>
+                                    </div>
+                                    @await Component.InvokeAsync(typeof(MostGraphV2ViewComponent))
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-characters__explain">
+                                            Đồ thị hiện tại (Least)
+                                        </div>
+                                    </div>
+                                    @await Component.InvokeAsync(typeof(LeastGraphV2ViewComponent))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 line-export">
+                    <button type="button" id="btn-export" class="btn btn-export btn-shadow">Lưu file</button>
+                </div>
+            </div>
+
+            @await Component.InvokeAsync(typeof(ExtraResultV2ViewComponent), Model)
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/custom-layout/js/result.js"></script>
+
+    <script>
+        function LoadAll() {
+            document.getElementById("full-most").innerHTML = '';
+            document.getElementById("full-least").innerHTML = '';
+
+            setTimeout(function () {
+                @for(int index = 1; index < (values.Count() - 1); index++)
+                {
+                    @: DrawLine('@Utils.FindPointNumberWithType(resultDISC.pointMosts, values[index - 1], "M")',
+                    @:    '@Utils.FindPointNumberWithType(resultDISC.pointMosts, values[index], "M")', 'most', `#16aaff`, true, @index);
+
+                    @: DrawLine('@Utils.FindPointNumberWithType(resultDISC.pointLeasts, values[index - 1], "L")',
+                    @:    '@Utils.FindPointNumberWithType(resultDISC.pointLeasts, values[index], "L")', 'least', `#16aaff`, true, @index);
+                }
+            }, 200);
+
+            HideLoading();
+        }
+
+        window.onresize = LoadAll;
+    </script>
+} 

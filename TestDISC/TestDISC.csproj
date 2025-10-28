@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\net5.0\TestDISC.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.78" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="EPPlus" Version="5.7.3" />
+    <PackageReference Include="MailKit" Version="2.14.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.14">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.7.0" />
+    <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="108.0.5359.7100" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+    <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
+    <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.22.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\custom-layout\" />
+    <Folder Include="wwwroot\custom-layout\lib\" />
+    <Folder Include="wwwroot\custom-layout\lib\bootstrap-v5\" />
+    <Folder Include="wwwroot\custom-layout\css\" />
+    <Folder Include="Actions\" />
+    <Folder Include="Actions\Interfaces\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Models\QuestionGroup\" />
+    <Folder Include="Models\Question\" />
+    <Folder Include="Models\UtilsProject\" />
+    <Folder Include="wwwroot\custom-layout\js\" />
+    <Folder Include="wwwroot\custom-layout\lib\jquery-v3.6.0\" />
+    <Folder Include="Models\InfoTest\" />
+    <Folder Include="Models\UserAnswer\" />
+    <Folder Include="wwwroot\custom-layout\lib\html2pdf\" />
+    <Folder Include="Api\" />
+    <Folder Include="Models\Auth\" />
+    <Folder Include="Models\Report\" />
+    <Folder Include="Models\UtilsProject\Filters\" />
+    <Folder Include="Views\Control\" />
+    <Folder Include="Models\LogAction\" />
+    <Folder Include="Templates\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="ViewComponents\Home\" />
+    <Folder Include="Views\Home\Components\" />
+    <Folder Include="Views\Home\Components\MostGraph\" />
+    <Folder Include="Views\Home\Components\LeastGraph\" />
+    <Folder Include="Logs\" />
+    <Folder Include="wwwroot\Assets\ResultImage\" />
+    <Folder Include="Views\Home\Components\LeastGraphV2\" />
+    <Folder Include="Views\Home\Components\MostGraphV2\" />
+    <Folder Include="Views\Home\Components\ExtraResult\" />
+    <Folder Include="Views\Home\Components\ExtraResultV2\" />
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Api\" />
+    <None Remove="Swashbuckle.AspNetCore.Swagger" />
+    <None Remove="Swashbuckle.AspNetCore" />
+    <None Remove="Models\Auth\" />
+    <None Remove="Models\Report\" />
+    <None Remove="Models\UtilsProject\Filters\" />
+    <None Remove="Views\Control\" />
+    <None Remove="Models\LogAction\" />
+    <None Remove="Tmeplates\" />
+    <None Remove="ViewComponents\" />
+    <None Remove="ViewComponents\Home\" />
+    <None Remove="Views\Home\Components\" />
+    <None Remove="Views\Home\Components\MostGraph\" />
+    <None Remove="Views\Home\Components\LeastGraph\" />
+    <None Remove="Logs\" />
+    <None Remove="Views\Home\Components\LeastGraphV2\" />
+    <None Remove="Views\Home\Components\MostGraphV2\" />
+    <None Remove="Views\Home\Components\ExtraResult\" />
+    <None Remove="Views\Home\Components\ExtraResultV2\" />
+    <None Remove="Properties\PublishProfiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\Assets\ResultImage\" />
+  </ItemGroup>
+</Project>

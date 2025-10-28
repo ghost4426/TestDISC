@@ -1,0 +1,155 @@
+﻿@using TestDISC.Models.UtilsProject;
+
+@{
+    int indexRow;
+    int middleValue = 12;
+    var mostGraph = Utils.BuildTableGraphMost();
+}
+
+<div class="row nature__container">
+    <svg id="full-most" class="graph-container"></svg>
+    <div class="col-3 nature__box nature__box--D">
+        <div class="nature__box--title">
+            <div class="row">
+                <div class="nature__title">
+                    <div class="nature__title-text">D</div>
+                </div>
+            </div>
+        </div>
+        <div class="nature__col nature__col--D">
+            <div class="nature__line nature__line--D"></div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.D > -1)
+                        {
+                            <div id="@("MD" + @row.D)" style="visibility: hidden;">@row.D</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.D</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 nature__box nature__box--I">
+        <div class="nature__box--title">
+            <div class="row">
+                <div class="nature__title">
+                    <div class="nature__title-text">I</div>
+                </div>
+            </div>
+        </div>
+        <div class="nature__col nature__col--I">
+            <div class="nature__line nature__line--I"></div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.I > -1)
+                        {
+                            <div id="@("MI" + @row.I)" style="visibility: hidden;">@row.I</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.I</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 nature__box nature__box--S">
+        <div class="nature__box--title">
+            <div class="row">
+                <div class="nature__title">
+                    <div class="nature__title-text">S</div>
+                </div>
+            </div>
+        </div>
+        <div class="nature__col nature__col--S">
+            <div class="nature__line nature__line--S"></div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.S > -1)
+                        {
+                            <div id="@("MS" + @row.S)" style="visibility: hidden;">@row.S</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.S</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 nature__box">
+        <div class="nature__box--title nature__box--C">
+            <div class="row">
+                <div class="nature__title">
+                    <div class="nature__title-text">C</div>
+                </div>
+            </div>
+        </div>
+        <div class="nature__col nature__col--C">
+            <div class="nature__line nature__line--C"></div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.C > -1)
+                        {
+                            <div id="@("MC" + @row.C)" style="visibility: hidden;">@row.C</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.C</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+</div>

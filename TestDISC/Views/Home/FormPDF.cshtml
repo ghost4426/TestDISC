@@ -1,0 +1,394 @@
+﻿@using TestDISC.Models.ResultDISC
+@using TestDISC.Models.User
+@using TestDISC.Models.UtilsProject
+@model (ResultDISCModel, UserCreate)
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Form PDF";
+
+    int middleValue = 12;
+    int indexRow;
+    int[] values = new int[] { 1, 2, 3, 4, 5 };
+    string[] titles = new string[] { "D", "I", "S", "C", "--" };
+
+    var resultDISC = Model.Item1;
+    var userCreate = Model.Item2;
+
+    var mostGraph = TestDISC.Models.UtilsProject.Utils.BuildTableGraphMost();
+    var leastGraph = TestDISC.Models.UtilsProject.Utils.BuildTableGraphLeast();
+}
+
+<style>
+    .loading-container {
+        background-color: rgba(255, 255, 255, 1);
+    }
+</style>
+
+<input type="hidden" id="page" name="page" value="PDF" />
+
+<div class="col-12" style="width: fit-content;">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8" id="result-form" style="width: 900px;">
+            @*<div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 container-logo">
+                    <img src="~/images/logo-disc-new.png" class="logo" />
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 container-my-banner">
+                    <img src="~/images/banner-big.png" class="my-banner" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="result-container__container-title">
+                                    <label class="result-container__title">Kết quả:</label><label class="result-container__code-text">@resultDISC.codetext</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Mô tả:</label>
+                                            <label>- @resultDISC.description</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Nhóm công việc:</label>
+                                            <label>- @resultDISC.interpret</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 description__outer">
+                                    <div class="description__container">
+                                        <div class="description__box card-shadow">
+                                            <label class="description__title">Công việc:</label>
+                                            <label>- @resultDISC.quanlyti</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+
+                        </div>
+                        <div class="col-8 statistic-container">
+                            <div class="statistic-container__box">
+                                <div class="row">
+                                    <div class="col-2" style="font-weight: bold;">MOST</div>
+                                    @foreach (var value in values)
+                                    {
+                                        <div class="col-2">@Utils.FindPointNumber(resultDISC.pointMosts, value)</div>
+                                    }
+                                </div>
+                                <div class="row statistic-container__title">
+                                    <div class="col-2"></div>
+                                    @foreach (var title in titles)
+                                    {
+                                        <div class="col-2">@title</div>
+                                    }
+                                                </div>
+                                                <div class="row">
+                                        <div class="col-2" style="font-weight: bold;">LEAST</div>
+                                    @foreach (var value in values)
+                                    {
+                                        <div class="col-2">@Utils.FindPointNumber(resultDISC.pointLeasts, value)</div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="graph-page">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-characters__explain">
+                                            Đồ thị xu hướng dịch chuyển (Most)
+                                        </div>
+                                    </div>
+                                    <div class="row col-characters__container">
+                                        <svg id="full-most" class="graph-container"></svg>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--D">
+                                                <div class="row">
+                                                    <label class="col-characters__title">D</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in mostGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.D > -1)
+                                                        {
+                                        <div id="@("MD" + @row.D)">@row.D</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.D</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--I">
+                                                <div class="row">
+                                                    <label class="col-characters__title">I</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in mostGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.I > -1)
+                                                        {
+                                        <div id="@("MI" + @row.I)">@row.I</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.I</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--S">
+                                                <div class="row">
+                                                    <label class="col-characters__title">S</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in mostGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.S > -1)
+                                                        {
+                                        <div id="@("MS" + @row.S)">@row.S</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.S</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--C">
+                                                <div class="row">
+                                                    <label class="col-characters__title">C</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in mostGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.C > -1)
+                                                        {
+                                        <div id="@("MC" + @row.C)">@row.C</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.C</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-12 col-characters__explain">
+                                            Đồ thị hiện tại (Least)
+                                        </div>
+                                    </div>
+                                    <div class="row col-characters__container" style="margin-bottom: 30px;">
+                                        <svg id="full-least" class="graph-container"></svg>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--D">
+                                                <div class="row">
+                                                    <label class="col-characters__title">D</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in leastGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.D > -1)
+                                                        {
+                                        <div id="@("LD" + @row.D)">@row.D</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.D</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--I">
+                                                <div class="row">
+                                                    <label class="col-characters__title">I</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in leastGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.I > -1)
+                                                        {
+                                        <div id="@("LI" + @row.I)">@row.I</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.I</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--S">
+                                                <div class="row">
+                                                    <label class="col-characters__title">S</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in leastGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.S > -1)
+                                                        {
+                                        <div id="@("LS" + @row.S)">@row.S</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.S</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                        <div class="col-3 col-characters__box">
+                                            <div class="statistic-container__col statistic-container__col--C">
+                                                <div class="row">
+                                                    <label class="col-characters__title">C</label>
+                                                    <div class="col-characters__seperate"></div>
+                                                </div>
+                                                @{ indexRow = 0;
+
+                                                                foreach (var row in leastGraph)
+                                                                {
+                                                    <div class="row">
+                                                        @if (row.C > -1)
+                                                        {
+                                        <div id="@("LC" + @row.C)">@row.C</div> }
+                                                        else
+                                                        {
+                                        <div style="visibility: hidden;">@row.C</div>}
+                                                    </div> if (indexRow == middleValue)
+                                                                    {
+                                                    <div class="col-characters__middle"></div> }
+
+                                                                    indexRow++;
+                                                                } }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12" style="margin-top: 150px;">
+                    <div class="final-text-v2">Nếu có bất kỳ thắc mắc nào hoặc cần hướng dẫn đọc Bảng kết quả phân tích và đánh giá năng lực hành vi DISC thì đừng ngần ngại phản hồi ngay với chúng tôi! TOPSKILLS luôn sẵn sàng với mọi vấn đề của @Utils.ConvertTitleUserVN(userCreate.titleid).ToLower().</div>
+                    <hr />
+                    <div class="final-text-v2 final-text__last pre-line">
+                        <strong>CÔNG TY CỔ PHẦN ĐÀO TẠO KỸ NĂNG LÃNH ĐẠO TOPSKILLS</strong>
+                        Tòa nhà Aloha, Lầu 8, 55 Trương Quốc Dung, P.10, Q. Phú Nhuận, TP.HCM
+                        Hotline: <a href="tel:0984093809">0984.09.38.09</a> | <a href="tel:0359030506">035.903.0506</a> (Ms. Tu Ngo)
+                        Email: <a class="link" herf="mailto:info@topskills.com.vn">info@topskills.com.vn</a>
+                        Website: <a class="link" href="https://www.topskills.com.vn" target="_blank">www.topskills.com.vn</a>
+                        Facebook: <a class="link" href="https://www.facebook.com/TopskillsVN" target="_blank">https://www.facebook.com/TopskillsVN</a>
+                        Youtube: <a class="link" href="https://www.youtube.com/channel/UCgFhH9Q6x4Z8Hj9t9UBoxWw" target="_blank">https://www.youtube.com/channel/UCgFhH9Q6x4Z8Hj9t9UBoxWw</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/custom-layout/js/result.js"></script>
+    <script src="~/custom-layout/js/pdf-form.js"></script>
+
+    <script>
+        function LoadAll() {
+            document.getElementById("full-most").innerHTML = '';
+            document.getElementById("full-least").innerHTML = '';
+
+            setTimeout(function () {
+                @for(int index = 1; index < (values.Count() - 1); index++)
+                {
+                    @: DrawLine('@Utils.FindPointNumberWithType(resultDISC.pointMosts, values[index - 1], "M")',
+                    @:    '@Utils.FindPointNumberWithType(resultDISC.pointMosts, values[index], "M")', 'most');
+
+                    @: DrawLine('@Utils.FindPointNumberWithType(resultDISC.pointLeasts, values[index - 1], "L")',
+                    @:    '@Utils.FindPointNumberWithType(resultDISC.pointLeasts, values[index], "L")', 'least');
+                }
+            }, 300);
+        }
+
+        //window.onresize = LoadAll;
+    </script>
+} 

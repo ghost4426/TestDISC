@@ -1,0 +1,139 @@
+﻿@using TestDISC.Models.UtilsProject;
+
+@{
+    int indexRow;
+    int middleValue = 12;
+    var mostGraph = Utils.BuildTableGraphMost();
+}
+
+<div class="row col-characters__container">
+    <svg id="full-most" class="graph-container"></svg>
+    <div class="col-3 col-characters__box">
+        <div class="statistic-container__col statistic-container__col--D">
+            <div class="row">
+                <label class="col-characters__title">D</label>
+                <div class="col-characters__seperate"></div>
+            </div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.D > -1)
+                        {
+                            <div id="@("MD" + @row.D)">@row.D</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.D</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 col-characters__box">
+        <div class="statistic-container__col statistic-container__col--I">
+            <div class="row">
+                <label class="col-characters__title">I</label>
+                <div class="col-characters__seperate"></div>
+            </div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.I > -1)
+                        {
+                            <div id="@("MI" + @row.I)">@row.I</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.I</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 col-characters__box">
+        <div class="statistic-container__col statistic-container__col--S">
+            <div class="row">
+                <label class="col-characters__title">S</label>
+                <div class="col-characters__seperate"></div>
+            </div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.S > -1)
+                        {
+                            <div id="@("MS" + @row.S)">@row.S</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.S</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+    <div class="col-3 col-characters__box">
+        <div class="statistic-container__col statistic-container__col--C">
+            <div class="row">
+                <label class="col-characters__title">C</label>
+                <div class="col-characters__seperate"></div>
+            </div>
+            @{
+                indexRow = 0;
+
+                foreach (var row in mostGraph)
+                {
+                    <div class="row">
+                        @if (row.C > -1)
+                        {
+                            <div id="@("MC" + @row.C)">@row.C</div>
+                        }
+                        else
+                        {
+                            <div style="visibility: hidden;">@row.C</div>
+                        }
+                    </div>
+
+                    if (indexRow == middleValue)
+                    {
+                        <div class="col-characters__middle"></div>
+                    }
+
+                    indexRow++;
+                }
+            }
+        </div>
+    </div>
+</div>
